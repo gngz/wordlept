@@ -1,0 +1,1 @@
+console.log("%cMade with ❤️ and ☕ by DiogoPassos.pt", "font-family:system-ui;font-size:4rem");
