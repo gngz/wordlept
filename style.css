@@ -8,7 +8,12 @@
 :root {
     --bg-color: #212529;
     --text-color: #F7F0F5;
+    --tile-text-color: #ECECEC;
     --button-bg-color: #525C66;
+    --button-bg-color-hover: rgb(98, 101, 104);
+    --bg-correct: #42B868;
+    --bg-present: #FFC300;
+    --bg-absent: #414141;
     font-family: 'Manrope', sans-serif;
 }
 
@@ -44,6 +49,12 @@ html {
     justify-content: center;
     height: 59px;
     text-align: center;
+
+    cursor: pointer;
+}
+
+.key:hover {
+    background-color: var(--button-bg-color-hover);
 }
 
 .key > svg {
@@ -60,14 +71,103 @@ html {
 
 .navbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 10px 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--button-bg-color);
 }
+
+.navbar-left, .navbar-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    fill: var(--button-bg-color);
+}
+
+.navbar-btn:hover{
+    fill: var(--tile-text-color);
+    
+}
+
+.navbar-btn:not(:last-child) {
+    margin-right: 5px;
+}
+
+
 .title {
-    font-size: 2em;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title svg {
+    margin-left: 10px;
 }
 
 .center {
     margin: 0 auto;
     max-width: 600px;
+}
+
+.board {
+    padding: 0 140px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 10px;
+    margin: 30px 0 60px 0;
+}
+
+.tile {
+    box-sizing: border-box;
+    
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--tile-text-color);
+}
+
+.tile[state="empty"] {
+    border: 2px solid var(--bg-absent);
+}
+
+.tile[state="correct"] {
+    background-color: var(--bg-correct);
+}
+
+.tile[state="present"] {
+    background-color: var(--bg-present);
+}
+
+.tile[state="absent"] {
+    background-color: var(--bg-absent);
+}
+
+svg {
+    pointer-events: none;
+}
+
+.overlay {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: var(--bg-color);
+    justify-content: center;
+    
+}
+
+.overlay-open {
+    display: flex;
+    animation: SlideIn 100ms linear;
 }
