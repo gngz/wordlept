@@ -48,9 +48,17 @@ function showHelp() {
     let section = document.getElementById("helpSection");
     if(!section.classList.contains("overlay-open")) {
         section.classList.add("overlay-open");
+        animate(section, "slidein");
     } else {
         section.classList.remove("overlay-open");
     }
+}
+
+function animate(element, animationClass) {
+    element.classList.add(animationClass);
+    element.addEventListener("animationend", () => {
+        element.classList.remove(animationClass);
+    }, {once: true});
 }
 
 (function () {
