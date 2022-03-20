@@ -44,21 +44,32 @@ function initialize() {
     })
 }
 
-function showHelp() {
-    let section = document.getElementById("helpSection");
+
+function toggleOverlay(element) {
+    let sectionId = element.getAttribute("overlay-section");
+
+    section = document.getElementById(sectionId);
+
     if(!section.classList.contains("overlay-open")) {
         section.classList.add("overlay-open");
         animate(section, "slidein");
     } else {
-        section.classList.remove("overlay-open");
+        animate(section, "slideout").then(() => {
+            section.classList.remove("overlay-open");
+        });
     }
 }
 
 function animate(element, animationClass) {
-    element.classList.add(animationClass);
-    element.addEventListener("animationend", () => {
-        element.classList.remove(animationClass);
-    }, {once: true});
+
+    return new Promise((resolve, _) => {
+        element.classList.add(animationClass);
+        element.addEventListener("animationend", () => {
+            element.classList.remove(animationClass);
+            resolve();
+        }, {once: true});
+    })
+    
 }
 
 (function () {

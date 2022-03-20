@@ -179,6 +179,10 @@ svg {
     animation: SlideIn 200ms linear;
 }
 
+.slideout {
+    animation: SlideOut 200ms linear;
+}
+
 /* Animations */
 
 @keyframes SlideIn {
@@ -189,6 +193,20 @@ svg {
     100% {
       transform: translateY(0px);
       opacity: 1;
+    }
+}
+
+@keyframes SlideOut {
+    0% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+    90% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(60px);
     }
 }
 
